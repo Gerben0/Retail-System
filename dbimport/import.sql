@@ -14,13 +14,13 @@ CREATE TABLE `items` (
   `default_cost` decimal(2,2) DEFAULT NULL,
   `tax_rate` decimal(5,2) DEFAULT NULL,
   `description` varchar(1500) DEFAULT NULL,
-  `vendor` varchar(100) DEFAULT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `vendor` varchar(100) DEFAULT NULL
+);
 
 ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `media`
+ALTER TABLE `items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 CREATE TABLE `customers` (
@@ -35,8 +35,8 @@ CREATE TABLE `customers` (
   `country` varchar(30) DEFAULT NULL,
   `email_address` varchar(100) NOT NULL,
   `phone_number` varchar(30) DEFAULT NULL,
-  `notes` varchar(1500) DEFAULT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `notes` varchar(1500) DEFAULT NULL
+);
 
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
@@ -48,8 +48,8 @@ CREATE TABLE `sales` (
   `id` int(11) NOT NULL,
   `sale_amount` decimal(2,2) NOT NULL,
   `customer` varchar(100) NOT NULL,
-  `sale_date` datetime DEFAULT '2055-01-01 12:00:00',
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `sale_date` datetime DEFAULT '2055-01-01 12:00:00'
+);
 
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`);
