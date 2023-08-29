@@ -46,7 +46,6 @@ ALTER TABLE `customers`
 
 CREATE TABLE `sales` (
   `id` int(11) NOT NULL,
-  `products` varchar(1500) NOT NULL,
   `sale_amount` decimal(2,2) NOT NULL,
   `customer` varchar(100) NOT NULL,
   `sale_date` datetime DEFAULT '2055-01-01 12:00:00',
@@ -57,5 +56,14 @@ ALTER TABLE `sales`
 
 ALTER TABLE `sales`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+/* Table to connect item IDs with sale IDs */
+CREATE TABLE `sales_items` (
+  `sale_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  PRIMARY KEY (`sale_id`, `item_id`),
+  FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`),
+  FOREIGN KEY (`item_id`) REFERENCES `items` (`id`)
+);
 
 COMMIT;
