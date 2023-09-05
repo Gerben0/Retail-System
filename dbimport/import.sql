@@ -39,13 +39,23 @@ CREATE TABLE `sales` (
   `sale_date` datetime DEFAULT '2055-01-01 12:00:00'
 );
 
-/* Table to connect item IDs with sale IDs */
+CREATE TABLE `payment_methods` (
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(50) NOT NULL,
+  `create_date` datetime DEFAULT '2055-01-01 12:00:00'
+);
+
+/* Table to connect item IDs with sale IDs, customer IDs and payment method IDs */
 CREATE TABLE `sales_items` (
   `sale_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  PRIMARY KEY (`sale_id`, `item_id`),
+  `customer_id` int(11) NOT NULL,
+  `payment_method_id` int(11) NOT NULL,
+  PRIMARY KEY (`sale_id`, `item_id`, `customer_id`, `payment_method_id`),
   FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`),
-  FOREIGN KEY (`item_id`) REFERENCES `items` (`id`)
+  FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
+  FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+  FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`id`)
 );
 
 /* Users via registration page */
