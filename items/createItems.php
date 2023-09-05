@@ -1,3 +1,10 @@
+<?php
+
+require_once "ItemsModel.php";
+require_once "ItemsController.php"
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
