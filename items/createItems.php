@@ -1,10 +1,3 @@
-<?php
-
-require_once "ItemsModel.php";
-require_once "ItemsController.php"
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +16,7 @@ require_once "ItemsController.php"
 
     <h1>Create new item</h1>
 
-    <form action="itemsIndex.php" method="post">
+    <form action="ItemsController.php" method="post">
         <div class="createItemOverview">
             
             <div class="itemTitle">
@@ -49,7 +42,7 @@ require_once "ItemsController.php"
             <div class="itemTax"> <!-- TO DO: make option values dynamic from options set in tax table -->
                 <h3>Tax rate</h3>
                 <select name="itemTax" id="itemTax">
-                    <option value="testTax">Test tax</option>
+                    <option value="testTax">21</option>
                 </select>
             </div>
             <div class="itemDescription">
