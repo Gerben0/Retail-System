@@ -10,9 +10,9 @@ CREATE TABLE `items` (
   `title` varchar(100) NOT NULL,
   `barcode` int(13) NOT NULL UNIQUE,
   `inventory` int(10) NOT NULL,
-  `retail_price` decimal(2,2) NOT NULL,
-  `default_cost` decimal(2,2) DEFAULT NULL,
-  `tax_rate` decimal(5,2) DEFAULT NULL,
+  `retail_price` decimal(4,2) NOT NULL,
+  `default_cost` decimal(4,2) DEFAULT NULL,
+  `tax_rate` decimal(5,2) DEFAULT NULL, /* For testing you can change this to a VARCHAR(10) or something */
   `description` varchar(1500) DEFAULT NULL,
   `vendor` varchar(100) DEFAULT NULL
 );
