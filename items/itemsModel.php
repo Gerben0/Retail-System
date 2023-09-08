@@ -9,6 +9,25 @@ class ItemsModel {
         $this->conn = $pdo;
     }
 
+    // Get all item information
+    public function getAllItems() {
+        $query = "SELECT * FROM items";
+        $stmt = $this->conn->query($query);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    // Search for item by name
+    public function searchItems($searchQuery) {
+        $query = "SELECT * FROM items WHERE title LIKE :searchQuery";
+        $stmt = $this->conn->prepare($query);
+        $searchParam = '%' . $searchQuery . '%';
+        $stmt->bindParam(':searchQuery', $searchParam, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    // Create items
     public function addItem($itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor) {
         try {
             $stmt = $this->conn->prepare("INSERT INTO items (title, barcode, inventory, retail_price, default_cost, tax_rate, description, vendor) 
@@ -30,5 +49,6 @@ class ItemsModel {
             echo $e->getMessage();
             return false;
         }
-    } 
+    }
+    
 }

@@ -32,6 +32,22 @@ class ItemsController {
         $this->model = new ItemsModel($pdo);
     }
 
+    // Get item information
+    public function getItemInfo() {
+        $items = [];
+
+        // Check if a search query has been submitted
+        if (isset($_GET['search'])) {
+            $searchQuery = htmlspecialchars($_GET['search']);
+            $items = $this->model->searchItems($searchQuery);
+        } else {
+            // If no search query, retrieve all items
+            $items = $this->model->getAllItems();
+        }
+        include('itemsIndex.php');
+    }
+
+    // Create item
     public function addItem() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addItem'])) {
             $itemTitle = $_POST['itemTitle'];
@@ -54,5 +70,11 @@ class ItemsController {
         }
     }
 }
-$controller = new ItemsController($pdo);
-$controller->addItem();
+
+// Call item information function
+$controllerGet = new ItemsController($pdo);
+$controllerGet->getItemInfo();
+
+// Call create item function
+$controllerAdd = new ItemsController($pdo);
+$controllerAdd->addItem();
