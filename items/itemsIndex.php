@@ -7,11 +7,12 @@
     <link rel= "stylesheet" href ="style.css">
 </head>
 <body>
-    <h1>Item List</h1>
     <form action="ItemsController.php" method="GET">
         <input type="text" name="search" placeholder="Search items">
         <button type="submit">Search</button>
     </form>
+    
+    <h1>Item List</h1>
 
     <table>
         <thead>
