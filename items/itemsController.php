@@ -35,7 +35,6 @@ class ItemsController {
     // Get item information
     public function getItemInfo() {
         $items = [];
-
         // Check if a search query has been submitted
         if (isset($_GET['search'])) {
             $searchQuery = htmlspecialchars($_GET['search']);

@@ -24,6 +24,7 @@
                 <tr>
                     <td><a href="updateItems.php?id=<?= $item['id'] ?>">
                         <?= $item['title'] ?></td>
+                        <!-- TO DO: add more relevant data for the item overview -->
                 </tr>
             <?php endforeach; ?>
         </tbody>
