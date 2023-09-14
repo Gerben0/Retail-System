@@ -7,6 +7,11 @@
     <link rel= "stylesheet" href ="style.css">
 </head>
 <body>
+
+    <div class="goToCreateItem">
+        <input type="button" onclick="window.location.href='/master/items/createItems.php';" value="Create item">
+    </div>
+
     <form action="ItemsController.php" method="GET">
         <input type="text" name="search" placeholder="Search items">
         <button type="submit">Search</button>
