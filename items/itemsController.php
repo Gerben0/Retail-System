@@ -50,6 +50,7 @@ class ItemsController {
         }
     }
 
+    // Update item
     public function updateItemC() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateItem'])) {
             $itemId = $_POST['itemId'];
@@ -73,6 +74,7 @@ class ItemsController {
         }
     }
 
+    // Delete item
     public function deleteItemC() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteItem'])) {
             $itemId = $_POST['itemId'];
