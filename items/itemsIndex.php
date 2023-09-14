@@ -22,11 +22,12 @@
         </thead>
         <tbody>
             <?php foreach ($items as $item): ?>
+                
                 <tr>
-                    <td><a href="updateItems.php?id=<?= $item['id'] ?>">
-                        <?= $item['title'] ?></td>
-                        <!-- TO DO: add more relevant data for the item overview -->
+                <td><a href="updateItems.php?id=<?= $item['id'] ?>"> <?= $item['title'] ?></a></td>
+                <!-- TO DO: add more relevant info to table such as QOH and price -->
                 </tr>
+
             <?php endforeach; ?>
         </tbody>
     </table>

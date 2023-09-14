@@ -1,7 +1,5 @@
 <?php
 
-include_once 'ItemsController.php';
-
 class ItemsModel {
     private $conn;
 
