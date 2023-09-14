@@ -36,6 +36,9 @@ $items = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <form action="ItemsController.php" method="post" class="mt-3">
         <div class="ps-4 createItemOverview">
+            <div>
+                <input type="hidden" id="itemId" name="itemId" value="<?= $items['id'] ?>">
+            </div>
             <div class="mb-3 itemTitle">
                 <h3>Title</h3>
                 <input type="text" id="itemTitle" name="itemTitle" class="form-control" placeholder="" value="<?= $items['title'] ?>">

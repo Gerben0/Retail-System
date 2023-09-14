@@ -28,7 +28,7 @@ class ItemsController {
     }
 
     // Create item
-    public function addItem() {
+    public function addItemC() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addItem'])) {
             $itemTitle = $_POST['itemTitle'];
             $itemBarcode = $_POST['itemBarcode'];
@@ -39,7 +39,7 @@ class ItemsController {
             $itemDescription = $_POST['itemDescription'];
             $itemVendor = $_POST['itemVendor'];
 
-            if ($this->model->addItem($itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor)) {
+            if ($this->model->addItemM($itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor)) {
                 echo "Item added successfully!";
                 header('location: itemsIndex.php');
                 exit();
@@ -49,9 +49,47 @@ class ItemsController {
             }
         }
     }
+
+    public function updateItemC() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateItem'])) {
+            $itemId = $_POST['itemId'];
+            $itemTitle = $_POST['itemTitle'];
+            $itemBarcode = $_POST['itemBarcode'];
+            $itemInventory = $_POST['itemInventory'];
+            $itemRetailPrice = $_POST['itemRetailPrice'];
+            $itemDefaultCost = $_POST['itemDefaultCost'];
+            $itemTax = $_POST['itemTax'];
+            $itemDescription = $_POST['itemDescription'];
+            $itemVendor = $_POST['itemVendor'];
+
+            if ($this->model->updateItemM($itemId, $itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor)) {
+                echo "Item updated succesfully!";
+                header('location: itemsIndex.php');
+                exit();
+            } else {
+                // TO DO: Add verification failures
+                echo "Failed to add item.";
+            }
+        }
+    }
+
+    public function deleteItemC() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteItem'])) {
+            $itemId = $_POST['itemId'];
+            if ($this->model->deleteItemM($itemId)) {
+                echo "Item succesfully deleted!";
+                header('location: itemsIndex.php');
+                exit();
+            } else {
+                // TO DO: Add verification failures
+                echo "There was an error deleting the item.";
+            }
+        }
+    }
 }
 
 $controller = new ItemsController($pdo);
 $controller->getItemInfo();
-$controller->addItem();
-
+$controller->addItemC();
+$controller->updateItemC();
+$controller->deleteItemC();
