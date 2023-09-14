@@ -68,4 +68,15 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL UNIQUE
 );
 
+CREATE TABLE `taxes` (
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL UNIQUE,
+  `percentage` int(11) NOT NULL 
+);
+
+CREATE TABLE `vendors` (
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL UNIQUE
+);
+
 COMMIT;
