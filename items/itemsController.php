@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include_once(__DIR__ . '/../includes/dbconnect.php');
-require_once 'ItemsModel.php';
+require_once 'itemsModel.php';
 
 class ItemsController {
     private $model;
