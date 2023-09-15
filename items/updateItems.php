@@ -89,7 +89,8 @@ $items = $stmt->fetch(PDO::FETCH_ASSOC);
     </form>
 
 
-    <!-- Scripts --> 
+    <!-- Scripts -->
+<script src="itemScripts.js"></script>     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>   
 
 </body>

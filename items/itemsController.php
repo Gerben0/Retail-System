@@ -39,6 +39,7 @@ class ItemsController {
             $itemDescription = $_POST['itemDescription'];
             $itemVendor = $_POST['itemVendor'];
 
+            // Limit barcode to 13 digits
             if (is_numeric($itemBarcode) && strlen($itemBarcode) <= 13) {
                 if ($this->model->addItemM($itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor)) {
                     echo "Item added successfully!";
@@ -67,13 +68,18 @@ class ItemsController {
             $itemDescription = $_POST['itemDescription'];
             $itemVendor = $_POST['itemVendor'];
 
-            if ($this->model->updateItemM($itemId, $itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor)) {
-                echo "Item updated succesfully!";
-                header('location: itemsIndex.php');
-                exit();
+            // Limit barcode to 13 digits
+            if (is_numeric($itemBarcode) && strlen($itemBarcode) <= 13) {
+                if ($this->model->updateItemM($itemId, $itemTitle, $itemBarcode, $itemInventory, $itemRetailPrice, $itemDefaultCost, $itemTax, $itemDescription, $itemVendor)) {
+                    echo "Item updated succesfully!";
+                    header('location: itemsIndex.php');
+                    exit();
+                } else {
+                    // TO DO: Add verification failures
+                    echo "Failed to add item.";
+                }
             } else {
-                // TO DO: Add verification failures
-                echo "Failed to add item.";
+                echo "Invalid barcode. Please ensure it's a number and up to 13 digits.";
             }
         }
     }
