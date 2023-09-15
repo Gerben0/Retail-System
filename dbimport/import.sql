@@ -8,7 +8,7 @@ USE retail_system;
 CREATE TABLE `items` (
   `id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(100) NOT NULL,
-  `barcode` int(13) NOT NULL UNIQUE,
+  `barcode` bigint(13) NOT NULL UNIQUE,
   `inventory` int(10) NOT NULL,
   `retail_price` decimal(4,2) NOT NULL,
   `default_cost` decimal(4,2) DEFAULT NULL,
