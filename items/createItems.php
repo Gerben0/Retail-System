@@ -26,7 +26,7 @@
             </div>
             <div class ="mb-3 itemBarcode"> <!-- TO DO: Create error when input is longer than 13 digits (or disable using JS?) -->
                 <h3>Barcode</h3>
-                <input type="number" id="itemBarcode" name="itemBarcode" class="form-control" placeholder="" value="">
+                <input type="number" id="itemBarcode" name="itemBarcode" class="form-control" placeholder="Max. 13 digits" value="">
             </div>
             <div class="mb-3 itemInventory">
                 <h3>Inventory</h3>
@@ -67,6 +67,7 @@
 
 
     <!-- Scripts --> 
+<script src="itemScripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>   
 
 </body>
