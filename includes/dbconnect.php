@@ -1,11 +1,11 @@
 <?php 
 
 // Connect to DB
-$host = '127.0.0.1';
-$db   = 'retail_system';
-$user = 'admin_retail_system';
-$pass = 'admin_retail_system';
-$charset = 'utf8mb4';
+$host     = getenv('DB_HOST') ?: '127.0.0.1';
+$db       = getenv('DB_NAME') ?: 'retail_system';
+$user     = getenv('DB_USER') ?: 'admin_retail_system';
+$pass     = getenv('DB_PASS') ?: 'admin_retail_system';
+$charset  = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
@@ -16,5 +16,6 @@ $options = [
 try {
      $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-     throw new \PDOException($e->getMessage(), (int)$e->getCode());
+     error_log($e->getMessage());
+     throw new \Exception("Unable to connect to the database.");
 }
