@@ -13,6 +13,10 @@ $data = [':id' => $id];
 $stmt->execute($data);
 $items = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$stmt = $pdo->prepare("SELECT * FROM taxes");
+$stmt->execute();
+$taxes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -59,10 +63,14 @@ $items = $stmt->fetch(PDO::FETCH_ASSOC);
                 <h3>Default cost</h3> 
                 <input type="number" id="itemDefaultCost" class="form-control" name="itemDefaultCost" step="0.01" placeholder="" value="<?= $items['default_cost'] ?>">
             </div>
-            <div class="mb-3 itemTax"> <!-- TO DO: make option values dynamic from options set in tax table -->
+            <div class="mb-3 itemTax"> 
                 <h3>Tax rate</h3>
                 <select name="itemTax" id="itemTax">
-                    <option value="<?= $items['tax_rate'] ?>"><?= $items['tax_rate'] ?></option>
+                    <?php foreach ($taxes as $tax): ?>
+                        <option value="<?= htmlspecialchars($tax['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <?= htmlspecialchars($tax['percentage'], ENT_QUOTES, 'UTF-8'); ?>%
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3 itemDescription">
