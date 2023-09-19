@@ -1,3 +1,14 @@
+<?php
+// TO DO: Use the Model and Controller files for the below query
+
+include_once(__DIR__ . '/../includes/dbconnect.php');
+
+$stmt = $pdo->prepare("SELECT * FROM taxes");
+$stmt->execute();
+$taxes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +35,7 @@
                 <h3>Title</h3>
                 <input type="text" id="itemTitle" name="itemTitle" class="form-control" placeholder="" value="">
             </div>
-            <div class ="mb-3 itemBarcode"> <!-- TO DO: Create error when input is longer than 13 digits (or disable using JS?) -->
+            <div class ="mb-3 itemBarcode">
                 <h3>Barcode</h3>
                 <input type="number" id="itemBarcode" name="itemBarcode" class="form-control" placeholder="Max. 13 digits" value="">
             </div>
@@ -32,18 +43,22 @@
                 <h3>Inventory</h3>
                 <input type="number" id="itemInventory" name="itemInventory" class="form-control" placeholder="" value="">
             </div>
-            <div class="mb-3 itemRetailPrice"> <!-- TO DO: convert dot to comma (or the other way around?) -->
+            <div class="mb-3 itemRetailPrice">
                 <h3>Retail price</h3>
                 <input type="number" id="itemRetailPrice" class="form-control" name="itemRetailPrice" step="0.01" placeholder="" value="">
             </div>
-            <div class="mb-3 itemDefaultCost"> <!-- TO DO: convert dot to comma (or the other way around?) -->
+            <div class="mb-3 itemDefaultCost">
                 <h3>Default cost</h3> 
                 <input type="number" id="itemDefaultCost" class="form-control" name="itemDefaultCost" step="0.01" placeholder="" value="">
             </div>
-            <div class="mb-3 itemTax"> <!-- TO DO: make option values dynamic from options set in tax table -->
+            <div class="mb-3 itemTax"> 
                 <h3>Tax rate</h3>
                 <select name="itemTax" id="itemTax">
-                    <option value="testTax">21</option>
+                    <?php foreach ($taxes as $tax): ?>
+                        <option value="<?= htmlspecialchars($tax['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <?= htmlspecialchars($tax['percentage'], ENT_QUOTES, 'UTF-8'); ?>%
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3 itemDescription">
